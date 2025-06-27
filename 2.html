@@ -1,0 +1,192 @@
+<html>
+<html>
+<head>
+  <title>HTML + CSS + JS Skills Project</title>
+  <style>
+    body {
+      background-color: #f2f2f2;
+    }
+
+  .grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  padding: 20px;
+}
+
+main {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+}
+
+aside {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-left: 4px solid #007bff;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+    header {
+      background-color: #007bff;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    form {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+
+    fieldset {
+      margin-bottom: 20px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 12px;
+      box-sizing: border-box;
+    }
+
+    input[type="radio"], input[type="checkbox"] {
+      width: auto;
+    }
+
+    .inline-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 8px 0 12px;
+    }
+
+    input[type="submit"] {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      font-size: 16px;
+      border-radius: 4px;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="grid-container">
+    <header>
+      <h1>Web Skills Practice Project</h1>
+    </header>
+
+    <main>
+      <h2>Contact Form</h2>
+      <form id="infoForm">
+        <fieldset>
+          <legend>Personal Information</legend>
+
+          <label for="name">Name:</label>
+          <input type="text" id="name" required />
+
+          <label for="emailID">Email ID:</label>
+          <input type="email" id="emailID" required />
+
+          <label for="phoneNumber">Phone:</label>
+          <input type="tel" id="phoneNumber" />
+
+          <label for="dateOfBirth">Date of Birth:</label>
+          <input type="date" id="dateOfBirth" />
+
+          <span>Gender:</span>
+          <div class="inline-group">
+            <input type="radio" name="gender" id="male" />
+            <label for="male">Male</label>
+            <input type="radio" name="gender" id="female" />
+            <label for="female">Female</label>
+          </div>
+
+          <label for="country">Country:</label>
+          <select id="country">
+            <option value=""></option>
+            <option value="us">United States</option>
+            <option value="india">India</option>
+            <option value="mexico">Mexico</option>
+          </select>
+        </fieldset>
+
+        <fieldset>
+          <legend>Address</legend>
+          <label for="street">Street:</label>
+          <input type="text" id="street" />
+          <label for="city">City:</label>
+          <input type="text" id="city" />
+          <label for="state">State:</label>
+          <input type="text" id="state" />
+        </fieldset>
+
+        <fieldset>
+          <legend>Other Information</legend>
+          <label for="textarea1">Comments:</label>
+          <textarea id="textarea1" cols="30" rows="5"></textarea>
+          <div class="inline-group">
+            <input type="checkbox" id="terms" />
+            <label for="terms">I agree to the terms of service</label>
+          </div>
+        </fieldset>
+
+        <input type="submit" value="Submit" />
+      </form>
+
+      <div class="todo-section">
+        <h2>My To-Do List</h2>
+        <ul id="todo-list"></ul>
+        <input type="text" id="new-task" placeholder="Add a new task" />
+        <button onclick="addTask()">Add</button>
+      </div>
+    </main>
+
+    <aside>
+      <h3>Hello</h3>
+      <p>Please fill the form carefully!</p>
+    </aside>
+  </div>
+
+  <script>
+
+    document.getElementById('infoForm').addEventListener('submit', function(e) {
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('emailID').value.trim();
+      const terms = document.getElementById('terms').checked;
+      const emailPattern = /^[^@]+@[^@]+\.[^@]+$/;
+
+      if (!name || !email || !emailPattern.test(email) || !terms) {
+        alert("Please enter your name, a valid email, and agree to the terms.");
+        e.preventDefault();
+      }
+    });
+
+
+    function addTask() {
+      const input = document.getElementById('new-task');
+      const task = input.value.trim();
+      if (task) {
+        const li = document.createElement('li');
+        li.textContent = task;
+        li.onclick = () => li.remove();
+        document.getElementById('todo-list').appendChild(li);
+        input.value = '';
+      }
+    }
+  </script>
+
+</body>
+</html>
